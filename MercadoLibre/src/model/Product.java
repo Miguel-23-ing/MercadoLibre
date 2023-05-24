@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.InvalidQuantityException;
+
 public class Product {
 
     private String name;
@@ -13,10 +15,12 @@ public class Product {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.quantityAvailable += quantityAvailable;
+        this.quantityAvailable = quantityAvailable;
         this.category = ProductType.values()[category];
-        this.purchaseNumber += getPurchaseNumber();
+        this.purchaseNumber = 0;
+
     }
+
 
     public String getName() {
         return name;
@@ -60,6 +64,24 @@ public class Product {
 
     public int getPurchaseNumber() {
         return purchaseNumber;
+    }
+
+    public boolean updatePurchaseNumber(int purchase){
+        this.purchaseNumber+=purchase;
+        this.quantityAvailable-=purchase;
+        return quantityAvailable == 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Products Info:" +
+                "\n Name='" + name + '\'' +
+                "\n Description='" + description + '\'' +
+                "\n Price=" + price +
+                "\n Quantity Available=" + quantityAvailable +
+                "\n Category=" + category +
+                "\n Purchase Number=" + purchaseNumber +
+                "\n";
     }
 
     public void setPurchaseNumber(int purchaseNumber) {

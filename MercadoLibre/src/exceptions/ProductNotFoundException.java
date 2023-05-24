@@ -1,8 +1,8 @@
 package exceptions;
 
-public class ProductNotFoundException extends RuntimeException {
+public class ProductNotFoundException extends Exception {
 
-    public ProductNotFoundException() {
-        super("This object does not exist");
+    public ProductNotFoundException(String message) {
+        super(message);
     }
 }
